@@ -5,7 +5,7 @@ This is code for streaming numeric values from a data.sparkfun.com stream!
 
 # Requirements
 
-- data.sparkfun.com stream of your own
+- data.sparkfun.com stream of your choice
 - ESP8266 Microcontroller
 - Lixie Display (1 or more)
 
