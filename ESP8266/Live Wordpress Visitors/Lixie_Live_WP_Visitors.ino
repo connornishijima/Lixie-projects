@@ -81,6 +81,7 @@ void color_block(byte r, byte g, byte b){
 // Set custom color, fade back to default
 void flash_color(byte r, byte g, byte b){
   lix.color_on_rgb(r,g,b);
+  lix.color_off_rgb(r,g,b);
   lix.show();
   delay(500);
   for(float progress = 0; progress < 1; progress+=0.01){
@@ -88,6 +89,11 @@ void flash_color(byte r, byte g, byte b){
       255*progress + r*(1-progress),
       255*progress + g*(1-progress),
       255*progress + b*(1-progress)
+    );
+    lix.color_off_rgb(
+      r*(1-progress),
+      g*(1-progress),
+      b*(1-progress)
     );
     lix.show();
     delay(1);
