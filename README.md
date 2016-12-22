@@ -1,5 +1,5 @@
 # Lixie Projects
-Here are several uses for your new Lixie dsiplays! Some are written by myself, and I will add any of your own you have made as long as the documentation is good!
+Here are several uses for your new Lixie dsiplays! Some are written by myself, and I will add any of your own you've made as long as the documentation is good!
 
 - ESP8266
   - [Live Wordpress Visitor Count
