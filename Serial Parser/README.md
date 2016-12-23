@@ -40,3 +40,29 @@ This will display a cyan "42"!
 I've included a Python example directory perfect for embedded computers like the Raspberry Pi, which uses an easy lixie.begin(), 
 clear() and write() file you can import to your own scripts! The library does the job of appending a newline character ("\n") to your
 command so you don't have to. Tested speed is about 100 FPS!
+
+For example, printing the UNIX epoch time using the lixie.py library:
+
+    import lixie
+    import time
+    
+    # Clear displays
+    lixie.begin()
+    
+    while True:
+        # Prepare data
+        data = {
+            "number":int(time.time()),
+            "color_type":"RGB",
+            "on_color":[
+                255,0,255
+            ],
+            "off_color":[
+                0,0,0
+            ]
+        }
+        # Write data
+        lixie.write(data)
+        
+        # Wait for one second
+        time.sleep(1)
