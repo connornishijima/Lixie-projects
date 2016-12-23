@@ -41,7 +41,7 @@ I've included a Python example directory perfect for embedded computers like the
 clear() and write() file you can import to your own scripts! The library does the job of appending a newline character ("\n") to your
 command so you don't have to. Tested speed is about 100 FPS!
 
-For example, printing the UNIX epoch time using the lixie.py library:
+For example, printing the UNIX epoch time (in magenta) using the lixie.py library:
 
     import lixie
     import time
