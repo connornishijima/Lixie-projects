@@ -8,3 +8,6 @@ Here are several uses for your new Lixie dsiplays! Some are written by myself, a
 ](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/Live%20PHP%20Visitors)
   - [data.sparkfun.com Streamer](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/data.sparkfun.com%20Streamer)
   - [OpenWeatherMap Display](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/OpenWeatherMap%20Display)
+- [Serial Parser](https://github.com/connornishijima/Lixie-projects/tree/master/Serial%20Parser)
+  - Python
+    - [Nest Thermostat](https://github.com/connornishijima/Lixie-projects/tree/master/Serial%20Parser/Python/Nest%20Thermostat)
