@@ -24,7 +24,7 @@ To control Lixies using a microcontroller as a USB Serial bridge, you need to se
 
 **NUMBER_TO_SHOW** Obvious enough, right? (Can be int or float, or string)
 
-**COLOR SPACE** Can be "RGB" or "HSV"
+**COLOR_TYPE** Can be "RGB" or "HSV"
 
 **COLOR_1/2/3** Can be RGB value, or HSV value, based on color space selected
 
