@@ -17,6 +17,8 @@ TEMP_UNITS = "F"
 
 while True:
 	try:
+		print "-----------------------------"
+		print "Getting data from Nest API..."
 		resp = commands.getoutput('nest.py --user "'+NEST_EMAIL+'" --password "'+NEST_PASSWORD+'" --index '+str(NEST_INDEX)+' show')
 		resp = resp.split("\n")
 		heat_state = False
@@ -48,7 +50,6 @@ while True:
 		else:
 			color = [255,255,255]
 
-		print "--------------------"
 		print "TEMP: "+str(int(temp))
 		print "HEAT STATE: "+str(heat_state)
 		print "COOL STATE: "+str(cool_state)
