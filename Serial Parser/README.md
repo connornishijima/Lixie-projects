@@ -6,27 +6,27 @@ Connor Nishijima (2016)
 To control Lixies using a microcontroller as a USB Serial bridge, you need to send a command like this to the Serial port of the uC:
 
     {
-      "number":**NUMBER_TO_SHOW**,
-      "color_type":**COLOR_SPACE**,
+      "number":**NUMBER TO SHOW**,
+      "color_type":**COLOR SPACE**,
       "on_color":[
-        **COLOR_1**,
-        **COLOR_2**,
-        **COLOR_3**
+        **COLOR 1**,
+        **COLOR 2**,
+        **COLOR 3**
       ],
       "off_color":[
-        **COLOR_1**,
-        **COLOR_2**,
-        **COLOR_3**
+        **COLOR 1**,
+        **COLOR 2**,
+        **COLOR 3**
       ]
     }
     
 # Variables
 
-**NUMBER_TO_SHOW** Obvious enough, right? (Can be int or float, or string)
+**NUMBER TO SHOW** Obvious enough, right? (Can be int or float, or string)
 
-**COLOR_TYPE** Can be "RGB" or "HSV"
+**COLOR SPACE** Can be "RGB" or "HSV"
 
-**COLOR_1/2/3** Can be RGB value, or HSV value, based on color space selected
+**COLOR 1/2/3** Can be RGB value, or HSV value, based on color space selected
 
 # Usage
 
