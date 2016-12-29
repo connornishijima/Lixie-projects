@@ -17,7 +17,7 @@ Flash the Lixie_Serial_Parser.ino sketch to your controller, and it will wait fo
 Any programming language that can write to a UART at 115200 baud can use this gateway to controlling Lixies. Just print a command:
 
 I've included a Python example directory perfect for embedded computers like the Raspberry Pi, which uses an easy lix.begin(), 
-clear() and write() library you can import to your own scripts! Tested speed is over 100 FPS!
+clear() and write() library you can import to your own scripts! Tested speed is over 100 FPS! Just put a copy of lixie.py in the same directory as your code!
 
 For example, printing the UNIX epoch time (in magenta) using the lixie.py library:
 
