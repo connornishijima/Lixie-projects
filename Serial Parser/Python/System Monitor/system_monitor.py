@@ -5,7 +5,7 @@ import commands
 
 # VARIABLES -----------------
 
-MODE_INTERVAL = 5 # How often to switch data types
+MODE_INTERVAL = 5 # How often (in seconds) to switch data types
 TEMP_UNITS = "F"  # Can be "F" or "C"
 
 # ---------------------------
