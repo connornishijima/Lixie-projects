@@ -13,7 +13,7 @@ You can install it using pip:
     sudo apt-get install python-pip
     sudo pip install nest-thermostat
     
-The script relies on the "lixie.py" library included.
+**This script relies on the [lixie.py library](https://github.com/connornishijima/Lixie-projects/tree/master/Serial%20Parser)!**
 
 # Variables
 
