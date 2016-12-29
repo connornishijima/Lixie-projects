@@ -1,9 +1,9 @@
-import lixie
+import lixie as lix
 import commands
 import time
 import traceback
 
-lixie.begin()
+lix.begin()
 
 # Nest account information for API Access
 NEST_EMAIL = ""
@@ -19,7 +19,7 @@ while True:
 	try:
 		print "-----------------------------"
 		print "Getting data from Nest API..."
-		resp = commands.getoutput('nest.py --user "'+NEST_EMAIL+'" --password "'+NEST_PASSWORD+'" --index '+str(NEST_INDEX)+' show')
+		resp = commands.getoutput('nest.py --user "'+NEST_EMAIL+'" --password "'+NEST_PASSWORD+'" --index '+str(NEST_INDEX)$
 		resp = resp.split("\n")
 		heat_state = False
 		cool_state = False
@@ -44,23 +44,18 @@ while True:
 					temp = float(val)
 
 		if heat_state == "True" and cool_state == "False":
-			color = [255,127,0]
+			color = [255,127,0]   # Orange
 		elif heat_state == "False" and cool_state == "True":
-			color = [0,127,255]
+			color = [0,127,255]   # Cyan
 		else:
-			color = [255,255,255]
+			color = [255,255,255] # White
 
 		print "TEMP: "+str(int(temp))
 		print "HEAT STATE: "+str(heat_state)
 		print "COOL STATE: "+str(cool_state)
 
-		data = {
-			"number":int(temp),
-			"color_type":"RGB",
-			"on_color":color,
-			"off_color":[0,0,0]
-		}
-		lixie.write(data)
+		lix.color_on_rgb(color[0],color[1],color[2])
+		lix.write(int(temp))
 		time.sleep(20)
 
 	except:
