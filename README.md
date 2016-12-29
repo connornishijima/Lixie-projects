@@ -11,3 +11,4 @@ Here are several uses for your new Lixie dsiplays! Some are written by myself, a
 - [Serial Parser](https://github.com/connornishijima/Lixie-projects/tree/master/Serial%20Parser)
   - Python
     - [Nest Thermostat](https://github.com/connornishijima/Lixie-projects/tree/master/Serial%20Parser/Python/Nest%20Thermostat)
+    - [System Monitor](https://github.com/connornishijima/Lixie-projects/tree/master/Serial%20Parser/Python/System%20Monitor)
