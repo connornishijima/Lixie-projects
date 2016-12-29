@@ -3,6 +3,7 @@ Here are several uses for your new Lixie dsiplays! Some are written by myself, a
 
 - ESP8266
   - [NTP Clock](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/NTP%20Clock)
+  - [Ping Speedometer](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/Ping%20Speedometer)
   - [Live Wordpress Visitor Count
 ](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/Live%20Wordpress%20Visitors)
   - [Live PHP Visitor Count
