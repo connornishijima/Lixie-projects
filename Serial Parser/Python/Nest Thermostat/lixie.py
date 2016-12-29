@@ -1,33 +1,65 @@
 from serial import Serial
-import json
 import time
+import re
+
+global ser
 
 def begin():
 	global ser
-	connected = False
-	port = 0
-	while connected == False: # Iterate through USB Serial until we find a microcontroller
-		try:
-			ser = Serial('/dev/ttyACM'+str(port), 115200, timeout=1)
-			connected = True
-		except:
-			port+=1
+	ser = Serial("/dev/ttyAMA0", 115200, timeout=1)
+	clear()
 
-	for x in range(10): # Clears out all Serial/JSON Parsing buffers
-		clear()
-		time.sleep(0.1)
-
-def write(data):
+def write(message):
 	global ser
-	output = json.dumps(data)
-	ser.write(output+"\n")
+	output = re.sub("[^0-9]", "", str(message))
+	ser_print(
+		"1:"+
+		str(output)+"\n"
+	)
+
+def color_on_rgb(r,g,b):
+	global ser
+	ser_print(
+		"2:"+
+		str(r)+":"+
+		str(g)+":"+
+		str(b)+"\n"
+	)
+
+def color_off_rgb(r,g,b):
+	global ser
+	ser_print(
+		"3:"+
+		str(r)+":"+
+		str(g)+":"+
+		str(b)+"\n"
+	)
+
+def color_on_hsv(h,s,v):
+	global ser
+	ser_print(
+		"4:"+
+		str(h)+":"+
+		str(s)+":"+
+		str(v)+"\n"
+	)
+
+def color_off_hsv(h,s,v):
+	global ser
+	ser_print(
+		"5:"+
+		str(h)+":"+
+		str(s)+":"+
+		str(v)+"\n"
+	)
 
 def clear():
-	data = {
-		"number":0,
-		"color_type":"HSV",
-		"on_color":[0,0,0],
-		"off_color":[0,0,0]
-	}
-	output = json.dumps(data)
-	ser.write(output+"\n")
+	global ser
+	ser_print("0\n")
+	
+def ser_print(message):
+	global ser
+#	sys.stdout.write(message.replace("\n",'')+"\\n"+"\n")
+#   ^ Uncomment this ^ for debug
+	ser.write(message)
+	time.sleep(0.005)
