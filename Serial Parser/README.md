@@ -35,3 +35,21 @@ For example, printing the UNIX epoch time (in magenta) using the lixie.py librar
         
         # Wait for one second
         time.sleep(1)
+
+# Raspberry Pi and Arduino
+
+To use Lixies with a Raspberry Pi, you'll need an Arduino/AVR to handle the strict timing for the WS2812B leds Lixie uses. You won't need a logic-level converter, as communication is one-way from the RasPi (3.3V) to the Arduino (5V).
+
+Connect the two devices like this:
+
+FRIZING DIAGRAM
+
+For Raspberry Pi, the GPIO UART device is "/dev/ttyAMA0". The Lixie Python library uses this by default:
+
+    lix.begin() # Uses /dev/ttyAMA0
+    
+But you can change this if necessary:
+
+    lix.begin("/dev/DEVICE_NAME")
+    
+**PLEASE NOTE** This relies on the idea that the UART RX pin of the Arduino stays an INPUT, and is never driven HIGH. If driven HIGH while connected to the RasPi, this will fry your Pi!
