@@ -42,7 +42,7 @@ To use Lixies with a Raspberry Pi, you'll need an Arduino/AVR to handle the stri
 
 Connect the two devices like this:
 
-FRIZING DIAGRAM
+![FRIZING DIAGRAM](http://i.imgur.com/f5TcKja.jpg)
 
 For Raspberry Pi, the GPIO UART device is "/dev/ttyAMA0". The Lixie Python library uses this by default:
 
@@ -52,4 +52,4 @@ But you can change this if necessary:
 
     lix.begin("/dev/DEVICE_NAME")
     
-**PLEASE NOTE** - This relies on the idea that the UART RX pin of the Arduino stays an INPUT, and is never driven HIGH. If driven HIGH while connected to the RasPi, this will fry your Pi!
+**PLEASE NOTE** - This relies on the idea that the UART RX pin of the Arduino stays an INPUT, and is never driven HIGH. If driven HIGH while connected to the RasPi, this will fry your Pi with 5 volts!
