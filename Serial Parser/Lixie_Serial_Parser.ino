@@ -1,76 +1,88 @@
-#include "ArduinoJson.h" // JSON Parser
-#include "Lixie.h"       // Include Lixie Library
-Lixie lix;               // Set class nickname for faster coding
+/*
+ * LIXIE Serial Parser
+ * 
+ * This code eats up numbers from Serial UART, 
+ * (separated by any non-numeric char) and
+ * converts them to Lixie output!
+ * 
+ * For example:
+ * "1:888\n" would write "888" to the displays.
+ * 
+ * Command types:
+ * 
+ * "0\n"
+ *    This clears all Lixie dsiplays
+ * 
+ * "1:[number]\n"
+ *    This writes [number] to the Lixie displays
+ *    
+ * "2:[r]:[g]:[b]\n"
+ *    This sets the Lixie on_color to [r],[g],[b].
+ *    
+ * "3:[r]:[g]:[b]\n"
+ *    This sets the Lixie off_color to [r],[g],[b].
+ *    
+ * "4:[h]:[s]:[v]\n"
+ *    This sets the Lixie on_color to [h],[s],[v].
+ *    
+ * "5:[h]:[s]:[v]\n"
+ *    This sets the Lixie off_color to [h],[s],[v].
+ */
 
-String inputString = "";         // a string to hold incoming data
-bool parsing = false;            // Keeps track of when we're currently parsing data
+#include "Lixie.h" // Include Lixie Library
+Lixie lix;         // Set class nickname for faster coding
+
+bool parsing = false;
 
 void setup() {
-  Serial.begin(115200); // initialize serial
+  // initialize serial:
+  Serial.begin(115200);
   lix.begin();
 }
 
 void loop() {
-  // Anything you want here
 }
 
 void serialEvent() {
-  if (parsing == false) { // If we're not parsing
-    while (Serial.available()) { // Read in all serial data
-      // get the new byte:
-      char inChar = (char)Serial.read();
-      // add it to the inputString:
-      // if the incoming character is a newline, set a flag
-      // so the main loop can do something about it:
-      if (inChar == '\n') { // If command is done sending
-        parseCommand(inputString); // Parse command
-        inputString = ""; // Empty input String
-      }
-      else {
-        inputString += inChar;
-      }
+  if (parsing == false) {
+    parsing = true;
+
+    uint8_t type = Serial.parseInt();
+    if (type == 0) {
+      lix.clear();
+      lix.show();
     }
-  }
-}
-
-void parseCommand(String com) {
-  parsing = true;
-  StaticJsonBuffer<400> jsonBuffer;
-  JsonObject& root = jsonBuffer.parseObject(com); // Parse JSON String to object
-
-  // Test if parsing succeeds.
-  if (!root.success()) {
-    // clear the string:
+    else if (type == 1) {
+      uint32_t number = Serial.parseInt();
+      lix.write_int(number);
+    }
+    else if (type == 2) {
+      uint8_t r = Serial.parseInt();
+      uint8_t g = Serial.parseInt();
+      uint8_t b = Serial.parseInt();
+      lix.color_on_rgb(r, g, b);
+    }
+    else if (type == 3) {
+      uint8_t r = Serial.parseInt();
+      uint8_t g = Serial.parseInt();
+      uint8_t b = Serial.parseInt();
+      lix.color_off_rgb(r, g, b);
+    }
+    else if (type == 4) {
+      uint8_t h = Serial.parseInt();
+      uint8_t s = Serial.parseInt();
+      uint8_t v = Serial.parseInt();
+      lix.color_on_hsv(h, s, v);
+    }
+    else if (type == 5) {
+      uint8_t h = Serial.parseInt();
+      uint8_t s = Serial.parseInt();
+      uint8_t v = Serial.parseInt();
+      lix.color_off_hsv(h, s, v);
+    }
+    while (Serial.available()) {
+      byte garbage = Serial.read();
+    }
     parsing = false;
-    return;
   }
-  
-  // Use JSON data to write to Lixie Displays:
-  uint32_t number = root["number"];
-  String color_type = root["color_type"];
-
-  if (color_type == "RGB") {
-    int on_r = root["on_color"][0];
-    int on_g = root["on_color"][1];
-    int on_b = root["on_color"][2];
-    int off_r = root["off_color"][0];
-    int off_g = root["off_color"][1];
-    int off_b = root["off_color"][2];
-
-    lix.color_on_rgb(on_r, on_g, on_b);
-    lix.color_off_rgb(off_r, off_g, off_b);
-  }
-  else if (color_type == "HSV") {
-    int on_h = root["on_color"][0];
-    int on_s = root["on_color"][1];
-    int on_v = root["on_color"][2];
-    int off_h = root["off_color"][0];
-    int off_s = root["off_color"][1];
-    int off_v = root["off_color"][2];
-    lix.color_on_hsv(on_h, on_s, on_v);
-    lix.color_off_hsv(off_h, off_s, off_v);
-  }
-
-  lix.write_int(number);
-  parsing = false;
 }
