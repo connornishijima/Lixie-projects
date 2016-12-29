@@ -53,7 +53,9 @@ But you can change this if necessary:
 
     lix.begin("/dev/DEVICE_NAME")
     
-**PLEASE NOTE** - This relies on the idea that the UART RX pin of the Arduino stays an INPUT, and is never driven HIGH. If driven HIGH while connected to the RasPi, this will fry your Pi with 5 volts!
+**PLEASE NOTE** - This relies on the idea that the UART RX pin of the Arduino stays an INPUT, and is never driven HIGH. If driven HIGH while connected to the RasPi, this will fry your Pi with 5 volts! To be extra careful, you can add a diode like this:
+
+    RASPI_TX -->|-- ARDUINO_RX
 
 Also, you'll need to stop the Pi from using the UART for other things:
 
