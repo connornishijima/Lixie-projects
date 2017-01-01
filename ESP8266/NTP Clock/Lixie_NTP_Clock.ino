@@ -61,21 +61,21 @@ void setup()
 
   // This sets all lights to yellow while we're connecting to WIFI
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    lix.color_on_rgb(255, 255, 0);
-    lix.color_off_rgb(255, 255, 0);
-    lix.write_int(9999);
+    lix.color_on(255, 255, 0);
+    lix.color_off(255, 255, 0);
+    lix.write(8888);
     delay(100);
   }
 
   // Green on connection success
-  lix.color_on_rgb(0, 255, 0);
-  lix.color_off_rgb(0, 255, 0);
-  lix.write_int(9999);
+  lix.color_on(0, 255, 0);
+  lix.color_off(0, 255, 0);
+  lix.write(9999);
   delay(500);
 
   // Reset colors to default
-  lix.color_on_rgb(255, 255, 255);
-  lix.color_off_rgb(0,0,0);
+  lix.color_on(255, 255, 255);
+  lix.color_off(0,0,0);
   lix.clear();
 
   Serial.print("IP number assigned by DHCP is ");
@@ -139,8 +139,8 @@ void digitalClockDisplay()
   char buf[10];
   time_now.toCharArray(buf,10);
 
-  lix.color_on_rgb(TIME_COLOR_RGB[0],TIME_COLOR_RGB[1],TIME_COLOR_RGB[2]);
-  lix.write_string(buf);
+  lix.color_on(TIME_COLOR_RGB[0],TIME_COLOR_RGB[1],TIME_COLOR_RGB[2]);
+  lix.write(buf);
   Serial.println(time_now);
 }
 
@@ -173,7 +173,7 @@ time_t getNtpTime()
       secsSince1900 |= (unsigned long)packetBuffer[41] << 16;
       secsSince1900 |= (unsigned long)packetBuffer[42] << 8;
       secsSince1900 |= (unsigned long)packetBuffer[43];
-      return secsSince1900 - 2208988800UL + timeZone * SECS_PER_HOUR;
+      return secsSince1900 - 2208988800UL + TIME_OFFSET * SECS_PER_HOUR;
     }
   }
   Serial.println("No NTP Response :-(");
