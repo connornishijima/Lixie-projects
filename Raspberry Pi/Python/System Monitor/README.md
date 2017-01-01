@@ -17,7 +17,7 @@ You can install it using pip:
     sudo apt-get install python-pip
     sudo pip install psutil
     
-**This script relies on the [lixie.py library](https://github.com/connornishijima/Lixie-projects/tree/master/Serial%20Parser#lixiepy-library)!**
+**This script relies on the [Lixie Python library](https://github.com/connornishijima/lixie_python)!**
 
 # Variables
 
