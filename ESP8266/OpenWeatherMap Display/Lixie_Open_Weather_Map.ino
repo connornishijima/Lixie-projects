@@ -67,7 +67,6 @@ Lixie lix;         // Set class nickname for faster coding
 #include <ArduinoJson.h>        // JSON Parser
 ESP8266WiFiMulti WiFiMulti;
 
-// This should be the index page of your Wordpress site!
 char* WIFI_SSID    = "";
 char* WIFI_PASS    = "";
 String OWM_API_KEY = "";           // Open Weather Map API Key
@@ -94,22 +93,22 @@ void setup() {
 
   // This sets all lights to yellow while we're connecting to WIFI
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    lix.color_on_rgb(255, 255, 0);
-    lix.color_off_rgb(255, 255, 0);
-    lix.write_int(8888);
+    lix.color_on(255, 255, 0);
+    lix.color_off(255, 255, 0);
+    lix.write(9999);
     delay(100);
   }
 
   // Green on connection success
-  lix.color_on_rgb(0, 255, 0);
-  lix.color_off_rgb(0, 255, 0);
-  lix.write_int(8888);
+  lix.color_on(0, 255, 0);
+  lix.color_off(0, 255, 0);
+  lix.write(9999);
   delay(500);
 
   // Reset colors to default
-  lix.color_on_rgb(255, 255, 255);
-  lix.color_off_rgb(0,0,0);
-  lix.write_int(0);
+  lix.color_on(255, 255, 255);
+  lix.color_off(0,0,0);
+  lix.write(0);
 }
 
 void loop() {
@@ -139,12 +138,12 @@ void checkOWM() {
         int field = owm_data["main"][OWM_FIELD];
         int code = owm_data["weather"][0]["id"];
         int weather_state = codeToState(code);
-        lix.color_on_rgb(
+        lix.color_on(
           state_colors[weather_state][0],
           state_colors[weather_state][1],
           state_colors[weather_state][2]
         );
-        lix.write_int(field);
+        lix.write(field);
       }
     }
     http.end();
