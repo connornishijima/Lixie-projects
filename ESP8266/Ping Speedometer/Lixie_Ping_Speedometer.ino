@@ -71,21 +71,21 @@ void setup() {
 
   // This sets all lights to yellow while we're connecting to WIFI
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    lix.color_on_rgb(255, 255, 0);
-    lix.color_off_rgb(255, 255, 0);
-    lix.write_int(9999);
+    lix.color_on(255, 255, 0);
+    lix.color_off(255, 255, 0);
+    lix.write(8888);
     delay(100);
   }
 
   // Green on connection success
-  lix.color_on_rgb(0, 255, 0);
-  lix.color_off_rgb(0, 255, 0);
-  lix.write_int(9999);
+  lix.color_on(0, 255, 0);
+  lix.color_off(0, 255, 0);
+  lix.write(8888);
   delay(500);
 
   // Reset colors to default
-  lix.color_on_rgb(255, 255, 255);
-  lix.color_off_rgb(0,0,0);
+  lix.color_on(255, 255, 255);
+  lix.color_off(0,0,0);
   lix.clear();
 }
 
@@ -106,14 +106,14 @@ void checkPing(){
 
     float rating = constrain(float(avg_shift) / float(bad_shift), 0, 1);
     
-    lix.color_on_rgb(255*rating, 255*(1-rating), 0);
+    lix.color_on(255*rating, 255*(1-rating), 0);
     
-    lix.write_int(avg_time_ms);
+    lix.write(avg_time_ms);
     Serial.println(avg_time_ms);
   }
   else{
     // ERROR
-    lix.color_on_rgb(255, 0, 0);
-    lix.write_string("0000");
+    lix.color_on(255, 0, 0);
+    lix.write("0000");
   }
 }
