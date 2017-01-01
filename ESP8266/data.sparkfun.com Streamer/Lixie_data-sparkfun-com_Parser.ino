@@ -45,19 +45,19 @@ void setup() {
 
   // This sets all lights to yellow while we're connecting to WIFI
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    lix.color_on_rgb(255, 255, 0);
-    lix.write_int(9999);
+    lix.color_on(255, 255, 0);
+    lix.write(8888);
     delay(100);
   }
 
   // Green on connection success
-  lix.color_on_rgb(0, 255, 0);
-  lix.write_int(9999);
+  lix.color_on(0, 255, 0);
+  lix.write(8888);
   delay(500);
 
   // Reset colors to default
-  lix.color_on_rgb(255, 255, 255);
-  lix.write_int(9999);
+  lix.color_on(255, 255, 255);
+  lix.write(0);
 }
 
 void loop() {
@@ -87,7 +87,7 @@ void checkSF(String data_field) {
         if(field < 0){
           field = 0;
         }
-        lix.write_int(field);
+        lix.write(field);
         Serial.print("DATA: ");
         Serial.println(field);
       }
