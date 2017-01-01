@@ -14,7 +14,7 @@ modeIndex = 0
 modes = ["TEMP","CPU","MEM","DISK"]
 lastSwitch = 0
 
-lix.begin() # Initialize Lixies
+lix.begin(4) # Number of displays you have
 
 while True:
 	tNow = int(time.time())
@@ -55,5 +55,5 @@ while True:
 
 	print mode+": "+str(info)
 
-	lix.color_on_rgb(r,g,b) # Set Lixie to type color
+	lix.color_on(r,g,b) # Set Lixie to info type color
 	lix.write(info) # write info

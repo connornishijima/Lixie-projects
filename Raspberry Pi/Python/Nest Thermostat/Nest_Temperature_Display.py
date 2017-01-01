@@ -3,7 +3,7 @@ import commands
 import time
 import traceback
 
-lix.begin()
+lix.begin(4) # Number of displays you have
 
 # Nest account information for API Access
 NEST_EMAIL = ""
@@ -54,7 +54,7 @@ while True:
 		print "HEAT STATE: "+str(heat_state)
 		print "COOL STATE: "+str(cool_state)
 
-		lix.color_on_rgb(color[0],color[1],color[2])
+		lix.color_on(color[0],color[1],color[2])
 		lix.write(int(temp))
 		time.sleep(20)
 
