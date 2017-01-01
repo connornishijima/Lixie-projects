@@ -35,10 +35,9 @@ Lixie lix;         // Set class nickname for faster coding
 #include <ESP8266HTTPClient.h>  // HTTPClient for web requests
 ESP8266WiFiMulti WiFiMulti;
 
-// This should be the index page of your Wordpress site!
 char* WIFI_SSID = "";
 char* WIFI_PASS = "";
-char* WORDPRESS_URL = "";
+char* WORDPRESS_URL = ""; // This should be the root page of your Wordpress site!
 
 // This is the visitor count used to compare changes over time for growth or loss
 uint16_t visitor_count = 0;
@@ -59,9 +58,9 @@ void setup() {
   delay(500);
 
   // Reset colors to default
-  lix.color_on_rgb(255,255,255);
-  lix.color_off_rgb(0,0,0);
-  lix.write_int(0);
+  lix.color_on(255,255,255);
+  lix.color_off(0,0,0);
+  lix.write(0);
 }
 
 void loop() {
@@ -73,24 +72,24 @@ void loop() {
 
 // Sets Lixie digits to solid colors
 void color_block(byte r, byte g, byte b){
-  lix.color_on_rgb(r,g,b);
-  lix.color_off_rgb(r,g,b);
-  lix.write_int(9999);
+  lix.color_on(r,g,b);
+  lix.color_off(r,g,b);
+  lix.write(8888);
 }
 
 // Set custom color, fade back to default
 void flash_color(byte r, byte g, byte b){
-  lix.color_on_rgb(r,g,b);
-  lix.color_off_rgb(r,g,b);
+  lix.color_on(r,g,b);
+  lix.color_off(r,g,b);
   lix.show();
   delay(500);
   for(float progress = 0; progress < 1; progress+=0.01){
-    lix.color_on_rgb(
+    lix.color_on(
       255*progress + r*(1-progress),
       255*progress + g*(1-progress),
       255*progress + b*(1-progress)
     );
-    lix.color_off_rgb(
+    lix.color_off(
       r*(1-progress),
       g*(1-progress),
       b*(1-progress)
@@ -111,11 +110,11 @@ void checkVisitors(String wordpress) {
       if (httpCode == HTTP_CODE_OK) {
         int payload = http.getString().toInt();
         if(payload > visitor_count){
-          lix.write_int(payload);
+          lix.write(payload);
           flash_color(0,255,0);
         }
         else if(payload < visitor_count){
-          lix.write_int(payload);
+          lix.write(payload);
           flash_color(255,0,0);
         }
         visitor_count = payload;
