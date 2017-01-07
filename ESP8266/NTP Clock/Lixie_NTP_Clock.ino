@@ -70,13 +70,11 @@ void setup()
 
   // Green on connection success
   lix.color(0, 255, 0);
-  lix.color_off(0, 255, 0);
   lix.write(9999);
   delay(500);
 
   // Reset colors to default
   lix.color(255, 255, 255);
-  lix.color_off(0,0,0);
   lix.clear();
 
   Serial.print("IP number assigned by DHCP is ");
