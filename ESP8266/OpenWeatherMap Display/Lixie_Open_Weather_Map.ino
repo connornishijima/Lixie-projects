@@ -59,7 +59,9 @@
 */
 
 #include "Lixie.h" // Include Lixie Library
-Lixie lix;         // Set class nickname for faster coding
+#define DATA_PIN   13
+#define NUM_LIXIES 4
+Lixie lix(DATA_PIN, NUM_LIXIES);
 
 #include <ESP8266WiFi.h>        // ESP8266 WIFI Lib
 #include <ESP8266WiFiMulti.h>   // WifiMulti Lib for connection handling
@@ -69,6 +71,7 @@ ESP8266WiFiMulti WiFiMulti;
 
 char* WIFI_SSID    = "";
 char* WIFI_PASS    = "";
+
 String OWM_API_KEY = "";           // Open Weather Map API Key
 String OWM_CITY_ID = "";           // Open Weather Map CityID
 String OWM_FIELD   = "temp";       // can be "temp","pressure","humidity","temp_min", or "temp_max"
@@ -93,22 +96,19 @@ void setup() {
 
   // This sets all lights to yellow while we're connecting to WIFI
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    lix.color_on(255, 255, 0);
-    lix.color_off(255, 255, 0);
-    lix.write(9999);
+    lix.color(255, 255, 0);
+    lix.write(8888);
     delay(100);
   }
 
   // Green on connection success
-  lix.color_on(0, 255, 0);
-  lix.color_off(0, 255, 0);
-  lix.write(9999);
+  lix.color(0, 255, 0);
+  lix.write(8888);
   delay(500);
 
   // Reset colors to default
-  lix.color_on(255, 255, 255);
-  lix.color_off(0,0,0);
-  lix.write(0);
+  lix.color(255, 255, 255);
+  lix.clear();
 }
 
 void loop() {
@@ -138,7 +138,7 @@ void checkOWM() {
         int field = owm_data["main"][OWM_FIELD];
         int code = owm_data["weather"][0]["id"];
         int weather_state = codeToState(code);
-        lix.color_on(
+        lix.color(
           state_colors[weather_state][0],
           state_colors[weather_state][1],
           state_colors[weather_state][2]
