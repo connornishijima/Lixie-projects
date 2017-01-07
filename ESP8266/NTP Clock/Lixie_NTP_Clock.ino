@@ -22,7 +22,9 @@
 */
 
 #include "Lixie.h" // Include Lixie Library
-Lixie lix;         // Set class nickname for faster coding
+#define DATA_PIN   13
+#define NUM_LIXIES 4
+Lixie lix(DATA_PIN, NUM_LIXIES);
 
 #include <TimeLib.h>
 #include <ESP8266WiFi.h>
@@ -61,20 +63,19 @@ void setup()
 
   // This sets all lights to yellow while we're connecting to WIFI
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    lix.color_on(255, 255, 0);
-    lix.color_off(255, 255, 0);
+    lix.color(255, 255, 0);
     lix.write(8888);
     delay(100);
   }
 
   // Green on connection success
-  lix.color_on(0, 255, 0);
+  lix.color(0, 255, 0);
   lix.color_off(0, 255, 0);
   lix.write(9999);
   delay(500);
 
   // Reset colors to default
-  lix.color_on(255, 255, 255);
+  lix.color(255, 255, 255);
   lix.color_off(0,0,0);
   lix.clear();
 
@@ -139,7 +140,7 @@ void digitalClockDisplay()
   char buf[10];
   time_now.toCharArray(buf,10);
 
-  lix.color_on(TIME_COLOR_RGB[0],TIME_COLOR_RGB[1],TIME_COLOR_RGB[2]);
+  lix.color(TIME_COLOR_RGB[0],TIME_COLOR_RGB[1],TIME_COLOR_RGB[2]);
   lix.write(buf);
   Serial.println(time_now);
 }
