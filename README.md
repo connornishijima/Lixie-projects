@@ -2,6 +2,7 @@
 Here are several uses for your new Lixie dsiplays! Some are written by myself, and I will add any of your own you've made as long as the documentation is good!
 
 - ESP8266
+  - [Cryptocurrency Ticker](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/Cryptocurrency%20Ticker)
   - [NTP Clock](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/NTP%20Clock)
   - [Ping Speedometer](https://github.com/connornishijima/Lixie-projects/tree/master/ESP8266/Ping%20Speedometer)
   - [Live Wordpress Visitor Count
