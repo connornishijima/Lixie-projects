@@ -24,7 +24,7 @@
 */
 
 #include "Lixie.h" // Include Lixie Library
-#define DATA_PIN   13
+#define DATA_PIN   5
 #define NUM_LIXIES 4
 Lixie lix(DATA_PIN, NUM_LIXIES);
 
@@ -34,7 +34,6 @@ Lixie lix(DATA_PIN, NUM_LIXIES);
 #include <ArduinoJson.h>        // JSON Parser
 ESP8266WiFiMulti WiFiMulti;
 
-// This should be the index page of your Wordpress site!
 char* WIFI_SSID = "";
 char* WIFI_PASS = "";
 String SPARKFUN_PUBLIC_KEY = "zDA9M8dQlahOqo4bx5Dd";
