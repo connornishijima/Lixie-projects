@@ -19,4 +19,4 @@ This is code for an NTP Clock!
 
 To use your Lixie Displays / ESP8266 as an NTP Clock, modify the .ino code with your own variables, and flash it to an ESP8266 using the Arduino IDE. Unless you've changed it, the default pin for Lixie DIN control is Pin 13. :)
 
-**PLEASE NOTE** - By default, the Lixie library is only configured to drive 4 digits. If you want a 6-digit clock, you'll need to modify the config.h file in the Lixie library src folder to use 6 digits.
+**PLEASE NOTE** - By default, the Lixie library is only configured to drive 4 digits. If you want a 6-digit clock, you'll need to modify the NUM_LIXIES valiable to use 6 digits.
